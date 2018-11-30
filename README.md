@@ -1,2 +1,2 @@
 # MVCexample
-Core Data, Alamofire, SwiftyJSON kullanıan MVC mimari deseniyle yazılmış basit bir proje.
+Core Data, Alamofire kullanıan MVC mimari deseniyle yazılmış basit bir proje.
