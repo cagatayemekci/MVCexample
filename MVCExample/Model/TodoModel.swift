@@ -8,7 +8,7 @@
 
 import Foundation
 import Alamofire
-import SwiftyJSON
+
 class TodoModel {
     var todos = [Todo]()
     
@@ -32,11 +32,14 @@ extension TodoModel {
     func getRequestAPICall(completion: @escaping (Bool)->())  {
         let todosEndpoint: String = "https://jsonplaceholder.typicode.com/todos/"
         Alamofire.request(todosEndpoint, method: .get, encoding: JSONEncoding.default)
-            .responseJSON { response in
-                let jsons = JSON(response.result.value!).arrayValue
-                for json in jsons{
-                    let todo = Todo(userId: json["userId"].intValue , id: json["id"].intValue , title: json["title"].stringValue , completed: json["completed"].boolValue )
-                    self.addTodo(todo: todo)
+            .responseData { response in
+                guard let data  = response.data else {return}
+                let decoder = JSONDecoder()
+                do {
+                    self.todos = try decoder.decode([Todo].self, from:data )
+
+                }catch let jsonError{
+                    print("json parse error: \(jsonError)")
                 }
                 completion(true)
         }

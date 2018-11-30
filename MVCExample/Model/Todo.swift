@@ -8,7 +8,7 @@
 
 import Foundation
 import Alamofire
-struct Todo : Hashable {
+struct Todo : Hashable,Decodable {
     var userId:Int
     var id:Int
     var title:String
