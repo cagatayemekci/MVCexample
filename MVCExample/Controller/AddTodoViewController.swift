@@ -9,22 +9,13 @@
 import UIKit
 
 class AddTodoViewController: UIViewController {
-
+    var todoModel: TodoModel?
+    @IBOutlet weak var todoTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func addTodoButtonClick(_ sender: Any) {
+        todoModel?.addTodo(todo: Todo(userId: 1, id: 1, title: todoTextField.text ?? "", completed: false))
+        todoTextField.text = ""
     }
-    */
-
 }

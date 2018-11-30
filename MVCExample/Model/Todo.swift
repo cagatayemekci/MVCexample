@@ -7,3 +7,23 @@
 //
 
 import Foundation
+import Alamofire
+struct Todo : Hashable {
+    var userId:Int
+    var id:Int
+    var title:String
+    var completed:Bool
+    init(userId:Int,id:Int,title:String,completed:Bool) {
+        self.userId = userId
+        self.id = id
+        self.title = title
+        self.completed = completed
+    }
+    static func ==(lhs: Todo, rhs: Todo) -> Bool {
+        return lhs.id == rhs.id
+    }
+    var hashValue: Int {
+        return id.hashValue
+    }
+}
+
